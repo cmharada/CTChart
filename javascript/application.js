@@ -6,10 +6,10 @@ var app = function() {
 var parseData = function(data) {
   var counts = {};
   data.forEach(function(study) {
-    if (counts[study.recruitment]) {
-      counts[study.recruitment] += 1;
+    if (counts[study.status.content]) {
+      counts[study.status.content] += 1;
     } else {
-      counts[study.recruitment] = 1;
+      counts[study.status.content] = 1;
     }
   });
   var results = [];
