@@ -4,12 +4,20 @@
   <title>
     Zephyr Health Project
   </title>
+  <link rel="stylesheet" type="text/css" href="css/application.css">
 </head>
 <body>
-  <input type="text" id="input_bar">
-  <button id="Search">Search</button>
   <div id="app">
-    Loading XML
+    <form id="search_bar">
+      <input type="text" id="input_bar">
+      <input type="submit" value="Search">
+    </form>
+    <div id="status">
+      Loading Chart
+    </div>
+    <div id="condition">
+      Loading Chart
+    </div>
   </div>
   <script src="lib/javascript/jquery-1.11.1.min.js"></script>
   <script src="lib/javascript/highcharts/highcharts.js"></script>

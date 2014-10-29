@@ -6,7 +6,9 @@
 
   var OverviewChart = App.OverviewChart = function($el) {
     this.data = null;
-    $el.highcharts({
+    this.$el = $el;
+    this.$el.addClass("hidden");
+    this.$el.highcharts({
       chart: {
         type: "column"
       },
@@ -31,7 +33,7 @@
           point: {
             events: {
               click: function(e) {
-                alert("hi");
+                alert(this.name);
               }
             }
           }
@@ -42,31 +44,18 @@
       }
     });
     this.chart = $el.highcharts();
-    this.chart.showLoading();
   };
 
   OverviewChart.prototype.setData = function(data) {
-    this.data = this.parseData(data);
-    this.chart.addSeries({
-      name: "Status",
-      data: this.data
-    });
+    this.data = data;
+    if (this.chart.series.length > 0) {
+      this.chart.series[0].setData(this.data);
+    } else {
+      this.chart.addSeries({
+        name: "Status",
+        data: this.data
+      });
+    }
     this.chart.hideLoading();
-  };
-
-  OverviewChart.prototype.parseData = function(data) {
-    var counts = {};
-    data.forEach(function(study) {
-      if (counts[study.status.content]) {
-        counts[study.status.content] += 1;
-      } else {
-        counts[study.status.content] = 1;
-      }
-    });
-    var results = [];
-    Object.keys(counts).forEach(function(key) {
-      results.push([key, counts[key]]);
-    });
-    return results;
   };
 }());

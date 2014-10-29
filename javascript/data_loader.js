@@ -9,7 +9,6 @@
   };
 
   DataLoader.prototype.setSearchTerm = function(searchTerm, callback) {
-    this.searchTerm = searchTerm;
     this.loadXML(this.searchTerm, 100, function(data) {
       callback(data.query.results.search_results.clinical_study);
     });
