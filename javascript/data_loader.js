@@ -9,7 +9,8 @@
   };
 
   DataLoader.prototype.setSearchTerm = function(searchTerm, callback) {
-    this.loadXML(this.searchTerm, 100, function(data) {
+    searchTerm = searchTerm.replace(/ /g,"+");
+    this.loadXML(searchTerm, 100, function(data) {
       callback(data.query.results.search_results.clinical_study);
     });
   };

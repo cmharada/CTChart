@@ -1,3 +1,7 @@
 .hidden {
-  display: none;
+  visibility: hidden;
+}
+
+#app div {
+  width: 100%;
 }

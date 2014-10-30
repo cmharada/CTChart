@@ -4,7 +4,7 @@
     window.App = {};
   }
 
-  var OverviewChart = App.OverviewChart = function($el, app) {
+  var ConditionChart = App.ConditionChart = function($el, app) {
     this.app = app;
     this.data = null;
     this.$el = $el;
@@ -20,7 +20,10 @@
         text: "Source: clinicaltrial.gov"
       },
       xAxis: {
-        type: 'category'
+        type: 'category',
+        labels: {
+          rotation: -45
+        }
       },
       yAxis: {
         min: 0,
@@ -34,7 +37,7 @@
           point: {
             events: {
               click: function(e) {
-                app.clickStatus(this.name);
+                alert(this.name);
               }
             }
           }
@@ -47,7 +50,7 @@
     this.chart = $el.highcharts();
   };
 
-  OverviewChart.prototype.setData = function(data) {
+  ConditionChart.prototype.setData = function(data) {
     this.data = data;
     if (this.chart.series.length > 0) {
       this.chart.series[0].setData(this.data);
