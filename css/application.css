@@ -2,8 +2,17 @@
   visibility: hidden;
 }
 
-#app div {
-  width: 100%;
+#search_wrapper {
+  width: 50%;
+  margin: 0 auto;
+}
+
+#search_wrapper #input_bar {
+  width: 80%;
+}
+
+td {
+  display: relative;
 }
 
 td .tooltip {
@@ -11,11 +20,11 @@ td .tooltip {
 }
 
 td:hover .short_title {
-  display: none;
+  visibility: none;
 }
 
 td:hover .tooltip {
-  display: inline;
+  display: block;
   position: absolute;
   border: 1px solid black;
   background: white;

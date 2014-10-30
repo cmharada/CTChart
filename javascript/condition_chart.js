@@ -8,7 +8,6 @@
     this.app = app;
     this.data = null;
     this.$el = $el;
-    this.$el.addClass("hidden");
     this.$el.highcharts({
       chart: {
         type: "column"

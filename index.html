@@ -8,17 +8,17 @@
 </head>
 <body>
   <div id="app">
-    <form id="search_bar">
-      <input type="text" id="input_bar">
-      <input type="submit" value="Search">
-    </form>
-    <div id="status">
-      Loading Chart
+    <div id="search_wrapper">
+      <form id="search_bar">
+        <input type="text" id="input_bar">
+        <input type="submit" value="Search">
+      </form>
     </div>
-    <div id="condition">
-      Loading Chart
+    <div id="status" class="hidden">
     </div>
-    <table id="detail">
+    <div id="condition" class="hidden">
+    </div>
+    <table id="detail" class="hidden">
       <tr>
         <td><a id="title" href="javascript:void(0)">Title</td>
         <td>URL</td>
@@ -31,7 +31,6 @@
   </div>
   <script src="lib/javascript/jquery-1.11.1.min.js"></script>
   <script src="lib/javascript/highcharts/highcharts.js"></script>
-  <script src="lib/javascript/highcharts/modules/exporting.js"></script>
   <script src="javascript/data_loader.js"></script>
   <script src="javascript/overview_chart.js"></script>
   <script src="javascript/condition_chart.js"></script>
