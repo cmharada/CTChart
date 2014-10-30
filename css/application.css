@@ -6,11 +6,15 @@
   width: 100%;
 }
 
-td span {
+td .tooltip {
   display: none;
 }
 
-td:hover span {
+td:hover .short_title {
+  display: none;
+}
+
+td:hover .tooltip {
   display: inline;
   position: absolute;
   border: 1px solid black;

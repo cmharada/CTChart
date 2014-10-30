@@ -34,7 +34,8 @@
       if (study.title.length > 30) {
         shortTitle = study.title.slice(0, 28) + "...";
       }
-      $row.append($("<td>" + shortTitle + "<span>" + study.title + "</span>" + "</td>"));
+      $row.append($("<td><span class='short_title'>" + shortTitle +
+        "</span><span class='tooltip'>" + study.title + "</span>" + "</td>"));
       $row.append($("<td><a href='" + study.url + "'>" + study.url + "</a></td>"));
       $row.append($("<td>" + study.condition_summary + "</td>"));
       $row.append($("<td>" + study.status.content + "</td>"));
@@ -52,7 +53,6 @@
         var dateA = new Date(a.last_changed);
         var dateB = new Date(b.last_changed);
         return dateA - dateB;
-        return 1;
       } else if (parameter === "score") {
         return a.score - b.score;
       } else if (parameter === "title") {
