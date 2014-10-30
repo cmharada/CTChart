@@ -5,37 +5,65 @@
   }
 
   var DetailTable = App.DetailTable = function($el, app) {
+    var that = this;
     this.app = app;
-    this.data = null;
+    this.rows = [];
     this.$el = $el;
     this.$el.addClass("hidden");
+    this.$el.find("#title").click(function() {
+      that.sortBy("title");
+    });
+    this.$el.find("#score").click(function() {
+      that.sortBy("score");
+    });
+    this.$el.find("#last_changed").click(function() {
+      that.sortBy("last_changed");
+    });
   };
 
   DetailTable.prototype.setData = function(data) {
+    var that =  this;
     this.data = data;
-    this.render();
-  };
-
-  DetailTable.prototype.render = function() {
-    var that = this;
-    this.$el.empty();
-    var $header = $("<tr></tr>");
-    $header.append($("<td>Title</td>"));
-    $header.append($("<td>URL</td>"));
-    $header.append($("<td>Conditions</td>"));
-    $header.append($("<td>Status</td>"));
-    $header.append($("<td>Score</td>"));
-    $header.append($("<td>Last Changed</td>"));
-    this.$el.append($header);
-    this.data.forEach(function(study) {
+    for (var i = 0; i < this.rows.length; i++) {
+      this.rows[i].remove();
+    }
+    this.rows = [];
+    data.forEach(function(study) {
       var $row = $("<tr></tr>");
-      $row.append($("<td>" + study.title + "</td>"));
-      $row.append($("<td>" + study.url + "</td>"));
+      var shortTitle = study.title;
+      if (study.title.length > 30) {
+        shortTitle = study.title.slice(0, 28) + "...";
+      }
+      $row.append($("<td>" + shortTitle + "<span>" + study.title + "</span>" + "</td>"));
+      $row.append($("<td><a href='" + study.url + "'>" + study.url + "</a></td>"));
       $row.append($("<td>" + study.condition_summary + "</td>"));
-      $row.append($("<td>" + study.status + "</td>"));
+      $row.append($("<td>" + study.status.content + "</td>"));
       $row.append($("<td>" + study.score + "</td>"));
       $row.append($("<td>" + study.last_changed + "</td>"));
+      that.rows.push($row);
       that.$el.append($row);
     });
+
+  };
+
+  DetailTable.prototype.sortBy = function(parameter) {
+    this.data.sort(function(a, b) {
+      if (parameter === "last_changed") {
+        var dateA = new Date(a.last_changed);
+        var dateB = new Date(b.last_changed);
+        return dateA - dateB;
+        return 1;
+      } else if (parameter === "score") {
+        return a.score - b.score;
+      } else if (parameter === "title") {
+        if (a.title < b.title) {
+          return -1;
+        } else if (a.title > b.title) {
+          return 1;
+        }
+        return 0;
+      }
+    });
+    this.setData(this.data);
   };
 }());

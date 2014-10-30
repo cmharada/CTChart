@@ -5,3 +5,14 @@
 #app div {
   width: 100%;
 }
+
+td span {
+  display: none;
+}
+
+td:hover span {
+  display: inline;
+  position: absolute;
+  border: 1px solid black;
+  background: white;
+}
