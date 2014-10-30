@@ -37,7 +37,7 @@
           point: {
             events: {
               click: function(e) {
-                alert(this.name);
+                app.clickCondition(this.name);
               }
             }
           }

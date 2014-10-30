@@ -3,6 +3,7 @@ var CTChart = function() {
   this.loader = new App.DataLoader();
   this.statusChart = new App.OverviewChart($("#status"), this);
   this.conditionChart = new App.ConditionChart($("#condition"), this);
+  this.detailTable = new App.DetailTable($("#detail"), this);
   this.statusData = null;
   this.conditionData = null;
 };
@@ -58,6 +59,12 @@ CTChart.prototype.clickStatus = function(statusName) {
   $("#condition").highcharts().showLoading();
   var data = this.parseConditionData(statusName);
   this.conditionChart.setData(data);
+};
+
+CTChart.prototype.clickCondition = function(conditionName) {
+  $("#detail").removeClass("hidden");
+  var data = this.conditionData[conditionName];
+  this.detailTable.setData(data);
 };
 
 $(function() {
